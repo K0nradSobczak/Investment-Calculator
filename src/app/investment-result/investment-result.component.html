@@ -8,13 +8,16 @@
       <th>Invested Capital</th>
     </tr>
   </thead>
+
   <tbody>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
+    @for (result of results(); track result) {
+      <tr>
+        <td>{{ result.year }}</td>
+        <td>{{ result.valueEndOfYear | currency: "EUR" }}</td>
+        <td>{{ result.interest | currency: "EUR" }}</td>
+        <td>{{ result.totalInterest | currency: "EUR" }}</td>
+        <td>{{ result.totalAmountInvested | currency: "EUR" }}</td>
+      </tr>
+    }
   </tbody>
 </table>

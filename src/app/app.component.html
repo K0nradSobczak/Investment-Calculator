@@ -1,2 +1,7 @@
 <app-header />
 <app-user-input />
+@if (results().length > 0) {
+  <app-investment-result [results]="results()" />
+} @else {
+  <p class="center">Please enter some values and press "Calculate"</p>
+}

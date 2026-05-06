@@ -12,9 +12,7 @@ export class InvestmentService {
     JSON.parse(localStorage.getItem(INVESTMENT_RESULTS_KEY) ?? '[]'),
   );
 
-  public getInvestmentResults() {
-    return this.investmentResults();
-  }
+  result = this.investmentResults.asReadonly();
 
   public addInvestmentResult(result: ICreateInvestment) {
     const investmentResults: IInvestmentResult[] =
