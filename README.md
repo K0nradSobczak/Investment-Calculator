@@ -1,27 +1,88 @@
-# EssentialsPractice
+# 📈 Investment Calculator – Angular Signals Edition 🚀
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.0-next.2.
+Witaj w projekcie **Kalkulatora Inwestycyjnego**! To aplikacja stworzona w celach edukacyjnych, demonstrująca nowoczesne podejście do budowania aplikacji w **Angularze** z wykorzystaniem **Signals**, **Services** oraz czystej logiki biznesowej.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🌟 Główne Funkcjonalności
 
-## Code scaffolding
+* 🧮 **Precyzyjne Obliczenia** – Wykorzystanie algorytmu procentu składanego.
+* ⚡ **Angular Signals** – W pełni reaktywny interfejs bez zbędnego odświeżania.
+* 💾 **LocalStorage Persistency** – Twoje wyniki nie znikają po odświeżeniu strony.
+* 🛡️ **Clean Architecture** – Separacja logiki biznesowej od komponentów UI.
+* 📊 **Interactive Table** – Przejrzysta prezentacja danych rok po roku.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## 🛠️ Stos Technologiczny
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+* **Framework:** [Angular (Standalone Components)](https://angular.io/) 🅰️
+* **State Management:** Angular Signals 📶
+* **Styling:** CSS3 (Custom Properties) 🎨
+* **Language:** TypeScript 📘
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 🏗️ Architektura Projektu
 
-## Running end-to-end tests
+Aplikacja została zaprojektowana zgodnie z zasadą **Separation of Concerns**:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+1.  **Logic (`investment-results.ts`)**: Czysta funkcja matematyczna, niezależna od frameworka.
+2.  **Service (`investment.service.ts`)**: Zarządzanie stanem aplikacji, obsługa `localStorage` i wystawianie sygnałów `ReadOnly`.
+3.  **Components**:
+  * `UserInput`: Przechwytywanie danych od użytkownika.
+  * `InvestmentResult`: Prezentacja danych w formie tabeli.
+  * `Header`: Elementy wizualne.
 
-## Further help
+---
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## 🚀 Jak uruchomić projekt?
+
+1.  **Sklonuj repozytorium**
+    ```bash
+    git clone [https://github.com/twoj-user/investment-calculator.git](https://github.com/twoj-user/investment-calculator.git)
+    ```
+
+2.  **Zainstaluj zależności**
+    ```bash
+    npm install
+    ```
+
+3.  **Uruchom serwer deweloperski**
+    ```bash
+    ng serve
+    ```
+    Otwórz przeglądarkę na `http://localhost:4200/`.
+
+---
+
+## 👨‍💻 Przykład implementacji Sygnałów
+
+W serwisie dbamy o to, aby stan był bezpieczny i reaktywny:
+
+```typescript
+// investment.service.ts
+private investmentResults = signal<IInvestmentResult[]>(
+  JSON.parse(localStorage.getItem('results') ?? '[]')
+);
+
+// Udostępniamy sygnał tylko do odczytu
+public result = this.investmentResults.asReadonly();
+```
+
+W komponencie korzystamy z automatycznego odświeżania:
+
+```html
+@if (results().length > 0) {
+  <app-investment-result [results]="results()" />
+}
+```
+
+---
+
+## 📝 Licencja
+
+Projekt stworzony w celach naukowych. Możesz go dowolnie modyfikować i używać do własnej nauki! 🎓
+
+---
+PRO TIP: Pamiętaj o walidacji danych na Backendzie – Frontend to tylko Twoja pierwsza linia obrony! 🛡️
