@@ -1,55 +1,57 @@
-<form (ngSubmit)="onSubmit()">
+<form (ngSubmit)="onSubmit()" class="glass-card" novalidate>
   <div class="input-group">
-    <div>
+    <div class="field">
       <label for="initial_investment">Initial Investment</label>
       <input
         id="initial_investment"
         type="number"
         name="initial_investment"
         [(ngModel)]="initialInvestment"
-        placeholder="initial investment"
+        placeholder="e.g. 5000"
         (keydown)="preventInvalidCharacters($event)"
       />
     </div>
 
-    <div>
+    <div class="field">
       <label for="annual_investment">Annual Investment</label>
       <input
         id="annual_investment"
         type="number"
-        [(ngModel)]="annualInvestment"
-        placeholder="annual investment"
-        (keydown)="preventInvalidCharacters($event)"
         name="annual_investment"
+        [(ngModel)]="annualInvestment"
+        placeholder="e.g. 1200"
+        (keydown)="preventInvalidCharacters($event)"
       />
     </div>
   </div>
 
   <div class="input-group">
-    <div>
-      <label for="expected_return">Expected Return</label>
+    <div class="field">
+      <label for="expected_return">Expected Return (%)</label>
       <input
         id="expected_return"
         type="number"
         name="expected_return"
         [(ngModel)]="expectedReturn"
-        placeholder="expected return"
+        placeholder="e.g. 7"
         (keydown)="preventInvalidCharacters($event)"
       />
     </div>
 
-    <div>
-      <label for="duration">Duration</label>
+    <div class="field">
+      <label for="duration">Duration (years)</label>
       <input
         id="duration"
-        name="duration"
         type="number"
+        name="duration"
         [(ngModel)]="duration"
+        placeholder="e.g. 10"
         (keydown)="preventInvalidCharacters($event)"
-        placeholder="duration"
       />
     </div>
   </div>
 
-  <button type="submit">Calculate</button>
+  <button type="submit" class="cta">
+    <span>Calculate</span>
+  </button>
 </form>

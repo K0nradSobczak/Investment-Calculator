@@ -1,23 +1,25 @@
-<table>
-  <thead>
-    <tr>
-      <th>Year</th>
-      <th>Investment Value</th>
-      <th>Interest (Year)</th>
-      <th>Total Interest</th>
-      <th>Invested Capital</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    @for (result of results(); track result; let i = $index) {
-      <tr class="animate-row" [style.animation-delay.ms]="i * 100">
-        <td>{{ result.year }}</td>
-        <td>{{ result.valueEndOfYear | currency: "EUR" }}</td>
-        <td>{{ result.interest | currency: "EUR" }}</td>
-        <td>{{ result.totalInterest | currency: "EUR" }}</td>
-        <td>{{ result.totalAmountInvested | currency: "EUR" }}</td>
+<div class="results-card">
+  <table>
+    <thead>
+      <tr>
+        <th>Year</th>
+        <th>Investment Value</th>
+        <th>Interest (Year)</th>
+        <th>Total Interest</th>
+        <th>Invested Capital</th>
       </tr>
-    }
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      @for (result of results(); track result; let i = $index) {
+        <tr class="animate-row" [style.animation-delay.ms]="i * 70">
+          <td class="year">{{ result.year }}</td>
+          <td>{{ result.valueEndOfYear | currency: "EUR" }}</td>
+          <td>{{ result.interest | currency: "EUR" }}</td>
+          <td>{{ result.totalInterest | currency: "EUR" }}</td>
+          <td>{{ result.totalAmountInvested | currency: "EUR" }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
