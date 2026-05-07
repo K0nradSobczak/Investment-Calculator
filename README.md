@@ -4,6 +4,28 @@ Witaj w projekcie **Kalkulatora Inwestycyjnego**! To aplikacja stworzona w celac
 
 ---
 
+# 📈 Investment Calculator
+
+<div align="center">
+  <img src="/public/investment-calculator-logo.png" alt="Logo Kalkulatora" width="120" height="120">
+  <h3>Nowoczesny kalkulator inwestycyjny zbudowany w oparciu o Angular Signals.</h3>
+
+[![Demo Live](https://img.shields.io/badge/Demo-Live-brightgreen?style=for-the-badge&logo=github)](https://K0nradSobczak.github.io/Investment-Calculator/)
+[![Angular Version](https://img.shields.io/badge/Angular-18+-DD0031?style=for-the-badge&logo=angular)](https://angular.io/)
+</div>
+
+---
+
+## 📱 Podgląd Aplikacji
+
+<div align="center">
+  <img src="./doc/screenshot.png" alt="Podgląd działającej aplikacji" width="100%" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+  <br>
+  <em>Wprowadź dane, kliknij "Calculate" i zobacz, jak rosną Twoje oszczędności rok po roku! 💰</em>
+</div>
+
+---
+
 ## 🌟 Główne Funkcjonalności
 
 * 🧮 **Precyzyjne Obliczenia** – Wykorzystanie algorytmu procentu składanego.
