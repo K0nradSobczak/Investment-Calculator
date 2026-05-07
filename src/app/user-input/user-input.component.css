@@ -1,9 +1,7 @@
-/* ================================
-   Glass card — floating form
-   ================================ */
 .glass-card {
   position: relative;
-  max-width: 36rem;
+  width: 100%;
+  max-width: 56rem;
   margin: 2rem auto;
   padding: 2rem 2rem 1.75rem;
   display: flex;
@@ -18,7 +16,6 @@
   box-shadow: var(--shadow-deep), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 
   transform: translateZ(0);
-  /* Organic curve, single source of truth — drives the float effect below */
   transition:
     transform var(--transition-organic),
     box-shadow var(--transition-organic),
@@ -28,7 +25,6 @@
   animation-delay: 120ms;
 }
 
-/* Lift the whole card whenever any field is focused */
 .glass-card:focus-within {
   transform: translateY(-6px);
   border-color: var(--glass-border-strong);
@@ -38,7 +34,6 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
-/* Subtle gradient ring on the top edge — adds the "lit by something above" feel */
 .glass-card::before {
   content: '';
   position: absolute;
@@ -64,9 +59,6 @@
   to   { opacity: 1; transform: translateY(0)    scale(1); }
 }
 
-/* ================================
-   Layout
-   ================================ */
 .input-group {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -79,9 +71,6 @@
   gap: 0.4rem;
 }
 
-/* ================================
-   Labels
-   ================================ */
 label {
   font-family: 'Roboto Condensed', sans-serif;
   font-size: 0.7rem;
@@ -97,9 +86,6 @@ label {
   color: var(--text-primary);
 }
 
-/* ================================
-   Inputs — the centerpiece
-   ================================ */
 input {
   width: 100%;
   padding: 0.85rem 1rem;
@@ -112,7 +98,6 @@ input {
   border-radius: var(--radius-sm);
   outline: none;
 
-  /* All input motion uses the organic curve for a unified feel */
   transition:
     background-color var(--transition-organic),
     border-color var(--transition-organic),
@@ -150,18 +135,17 @@ input:focus::placeholder {
   transform: translateX(2px);
 }
 
-/* Strip native number spinner */
 input[type='number']::-webkit-outer-spin-button,
 input[type='number']::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
 input[type='number'] {
   -moz-appearance: textfield;
         appearance: textfield;
 }
 
-/* Autofill — keep glass look */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
@@ -171,9 +155,6 @@ input:-webkit-autofill:focus {
   transition: background-color 9999s ease-out;
 }
 
-/* ================================
-   Submit button — gradient accent
-   ================================ */
 .cta {
   position: relative;
   width: 100%;
@@ -229,7 +210,6 @@ input:-webkit-autofill:focus {
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
-/* Replace native focus outline with a glassmorphic glow */
 .cta:focus,
 .cta:focus-visible {
   outline: none;
@@ -246,12 +226,8 @@ input:-webkit-autofill:focus {
   box-shadow: none;
 }
 
-/* ================================
-   Responsive
-   ================================ */
 @media (max-width: 540px) {
   .glass-card {
-    margin: 1.25rem 1rem;
     padding: 1.5rem 1.25rem 1.25rem;
     border-radius: var(--radius-md);
   }
@@ -263,5 +239,11 @@ input:-webkit-autofill:focus {
 
   .glass-card:focus-within {
     transform: translateY(-3px);
+  }
+}
+
+@media (max-width: 420px) {
+  .glass-card {
+    margin: 1.25rem 0.5rem;
   }
 }

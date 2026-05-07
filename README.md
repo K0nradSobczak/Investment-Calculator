@@ -7,7 +7,7 @@ Witaj w projekcie **Kalkulatora Inwestycyjnego**! To aplikacja stworzona w celac
 # 📈 Investment Calculator
 
 <div align="center">
-  <img src="/public/investment-calculator-logo.png" alt="Logo Kalkulatora" width="120" height="120">
+  <img src="/public/logo3.png" alt="Logo Kalkulatora" width="120" height="120" style="border-radius: 50%;">
   <h3>Nowoczesny kalkulator inwestycyjny zbudowany w oparciu o Angular Signals.</h3>
 
 [![Demo Live](https://img.shields.io/badge/Demo-Live-brightgreen?style=for-the-badge&logo=github)](https://K0nradSobczak.github.io/Investment-Calculator/)

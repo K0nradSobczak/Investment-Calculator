@@ -1,52 +1,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Roboto+Condensed:wght@400;700&display=swap');
 
 :root {
-  /* Background — deep navy / charcoal */
   --bg-deep: #07091a;
   --bg-mid: #0f1330;
   --bg-soft: #1a1f4a;
 
-  /* Glass surfaces */
   --glass-bg: rgba(255, 255, 255, 0.04);
   --glass-bg-strong: rgba(255, 255, 255, 0.07);
   --glass-border: rgba(255, 255, 255, 0.1);
   --glass-border-strong: rgba(255, 255, 255, 0.18);
   --glass-blur: 22px;
 
-  /* Accent gradient — cool indigo → cyan */
   --accent-1: #6366f1;
   --accent-2: #22d3ee;
   --accent-gradient: linear-gradient(135deg, var(--accent-1) 0%, var(--accent-2) 100%);
   --accent-glow: rgba(99, 102, 241, 0.45);
   --accent-glow-soft: rgba(34, 211, 238, 0.25);
 
-  /* Typography — bumped for WCAG AA on glass overlays */
   --text-primary: rgba(255, 255, 255, 0.96);
   --text-secondary: rgba(255, 255, 255, 0.78);
   --text-muted: rgba(255, 255, 255, 0.58);
 
-  /* Shadows */
   --shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.25);
   --shadow-deep: 0 20px 60px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.35);
   --shadow-glow: 0 0 0 1px var(--glass-border), 0 20px 60px rgba(7, 9, 26, 0.6);
   --focus-ring: 0 0 0 3px rgba(99, 102, 241, 0.35),
                 0 0 28px 4px rgba(34, 211, 238, 0.2);
 
-  /* Geometry */
   --radius-sm: 10px;
   --radius-md: 16px;
   --radius-lg: 24px;
 
-  /* Motion — single organic curve, used everywhere */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --transition-fast: 220ms var(--ease-out);
   --transition-smooth: 420ms var(--ease-out);
   --transition-organic: 600ms var(--ease-out);
 
-  /* Browser native UI tints */
   color-scheme: dark;
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+  scrollbar-color: rgba(99, 102, 241, 0.55) transparent;
 }
 
 * {
@@ -73,50 +65,44 @@ body {
   background-attachment: fixed;
 
   overflow-x: hidden;
+  padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
 }
 
-/* ==================================
-   Custom scrollbar — glass-friendly
-   ================================== */
+@media (max-width: 540px) {
+  body {
+    padding-bottom: calc(2.5rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-::-webkit-scrollbar-track {
+  width: 6px;
+  height: 6px;
   background: transparent;
 }
 
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-track-piece {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.18),
-    rgba(255, 255, 255, 0.08)
-  );
+  background: rgba(99, 102, 241, 0.55);
   border-radius: 999px;
-  border: 2px solid transparent;
-  background-clip: padding-box;
   transition: background var(--transition-fast);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(
-    180deg,
-    rgba(99, 102, 241, 0.6),
-    rgba(34, 211, 238, 0.45)
-  );
-  background-clip: padding-box;
-  border: 2px solid transparent;
+  background: var(--accent-1);
 }
 
-::-webkit-scrollbar-corner {
+::-webkit-scrollbar-corner,
+::-webkit-scrollbar-button {
   background: transparent;
+  display: none;
 }
 
-/* ==================================
-   Global focus reset — replace native
-   outlines with the glass focus-ring.
-   ================================== */
 :where(input, button, select, textarea, a):focus {
   outline: none;
 }
