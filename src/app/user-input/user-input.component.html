@@ -8,6 +8,7 @@
         name="initial_investment"
         [(ngModel)]="initialInvestment"
         placeholder="initial investment"
+        (keydown)="preventInvalidCharacters($event)"
       />
     </div>
 
@@ -18,6 +19,7 @@
         type="number"
         [(ngModel)]="annualInvestment"
         placeholder="annual investment"
+        (keydown)="preventInvalidCharacters($event)"
         name="annual_investment"
       />
     </div>
@@ -32,6 +34,7 @@
         name="expected_return"
         [(ngModel)]="expectedReturn"
         placeholder="expected return"
+        (keydown)="preventInvalidCharacters($event)"
       />
     </div>
 
@@ -42,6 +45,7 @@
         name="duration"
         type="number"
         [(ngModel)]="duration"
+        (keydown)="preventInvalidCharacters($event)"
         placeholder="duration"
       />
     </div>

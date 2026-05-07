@@ -10,8 +10,8 @@
   </thead>
 
   <tbody>
-    @for (result of results(); track result) {
-      <tr>
+    @for (result of results(); track result; let i = $index) {
+      <tr class="animate-row" [style.animation-delay.ms]="i * 100">
         <td>{{ result.year }}</td>
         <td>{{ result.valueEndOfYear | currency: "EUR" }}</td>
         <td>{{ result.interest | currency: "EUR" }}</td>

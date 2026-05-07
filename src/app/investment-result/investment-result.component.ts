@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { IInvestmentResult } from '../investment.model';
 import { CurrencyPipe } from '@angular/common';
 
@@ -8,7 +8,8 @@ import { CurrencyPipe } from '@angular/common';
   imports: [CurrencyPipe],
   templateUrl: './investment-result.component.html',
   styleUrl: './investment-result.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InvestmentResultComponent {
-  results = input.required<IInvestmentResult[]>();
+  public results = input.required<IInvestmentResult[]>();
 }

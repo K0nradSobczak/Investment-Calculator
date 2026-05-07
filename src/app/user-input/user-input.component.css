@@ -74,6 +74,17 @@ button {
   user-select: none;
 }
 
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
 button:hover {
   background-color: #aaf1d6;
   box-shadow: 0 4px 12px rgba(131, 230, 192, 0.3);
