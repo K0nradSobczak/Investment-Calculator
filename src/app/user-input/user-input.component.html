@@ -1,4 +1,9 @@
-<form (ngSubmit)="onSubmit()" class="glass-card" novalidate>
+<form
+  (ngSubmit)="onSubmit()"
+  class="glass-card"
+  novalidate
+  aria-label="Investment calculator inputs"
+>
   <div class="input-group">
     <div class="field">
       <label for="initial_investment">Initial Investment</label>
@@ -9,6 +14,10 @@
         [(ngModel)]="initialInvestment"
         placeholder="e.g. 5000"
         (keydown)="preventInvalidCharacters($event)"
+        aria-label="Initial investment in EUR"
+        inputmode="decimal"
+        min="0"
+        autocomplete="off"
       />
     </div>
 
@@ -21,6 +30,10 @@
         [(ngModel)]="annualInvestment"
         placeholder="e.g. 1200"
         (keydown)="preventInvalidCharacters($event)"
+        aria-label="Annual investment in EUR"
+        inputmode="decimal"
+        min="0"
+        autocomplete="off"
       />
     </div>
   </div>
@@ -35,6 +48,10 @@
         [(ngModel)]="expectedReturn"
         placeholder="e.g. 7"
         (keydown)="preventInvalidCharacters($event)"
+        aria-label="Expected annual return in percent"
+        inputmode="decimal"
+        min="0"
+        autocomplete="off"
       />
     </div>
 
@@ -47,11 +64,15 @@
         [(ngModel)]="duration"
         placeholder="e.g. 10"
         (keydown)="preventInvalidCharacters($event)"
+        aria-label="Investment duration in years"
+        inputmode="numeric"
+        min="1"
+        autocomplete="off"
       />
     </div>
   </div>
 
-  <button type="submit" class="cta">
+  <button type="submit" class="cta" aria-label="Calculate investment results">
     <span>Calculate</span>
   </button>
 </form>

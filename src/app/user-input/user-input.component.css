@@ -18,8 +18,24 @@
   box-shadow: var(--shadow-deep), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 
   transform: translateZ(0);
+  /* Organic curve, single source of truth — drives the float effect below */
+  transition:
+    transform var(--transition-organic),
+    box-shadow var(--transition-organic),
+    border-color var(--transition-organic);
+
   animation: cardIn 700ms var(--ease-out) both;
   animation-delay: 120ms;
+}
+
+/* Lift the whole card whenever any field is focused */
+.glass-card:focus-within {
+  transform: translateY(-6px);
+  border-color: var(--glass-border-strong);
+  box-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.55),
+    0 6px 18px rgba(99, 102, 241, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
 /* Subtle gradient ring on the top edge — adds the "lit by something above" feel */
@@ -96,11 +112,12 @@ input {
   border-radius: var(--radius-sm);
   outline: none;
 
+  /* All input motion uses the organic curve for a unified feel */
   transition:
-    background-color var(--transition-smooth),
-    border-color var(--transition-smooth),
-    box-shadow var(--transition-smooth),
-    transform var(--transition-smooth);
+    background-color var(--transition-organic),
+    border-color var(--transition-organic),
+    box-shadow var(--transition-organic),
+    transform var(--transition-organic);
 
   will-change: transform, box-shadow;
 }
@@ -115,13 +132,16 @@ input:hover {
   border-color: var(--glass-border-strong);
 }
 
-input:focus {
+input:focus,
+input:focus-visible {
+  outline: none;
   background: rgba(255, 255, 255, 0.07);
   border-color: rgba(99, 102, 241, 0.7);
   transform: translateY(-1px);
   box-shadow:
-    0 0 0 4px rgba(99, 102, 241, 0.15),
-    0 8px 24px rgba(99, 102, 241, 0.18),
+    0 0 0 4px rgba(99, 102, 241, 0.18),
+    0 10px 28px rgba(99, 102, 241, 0.22),
+    0 0 22px 2px rgba(34, 211, 238, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
@@ -181,9 +201,9 @@ input:-webkit-autofill:focus {
     inset 0 1px 0 rgba(255, 255, 255, 0.25);
 
   transition:
-    transform var(--transition-fast),
-    box-shadow var(--transition-smooth),
-    background-position var(--transition-smooth);
+    transform var(--transition-organic),
+    box-shadow var(--transition-organic),
+    background-position var(--transition-organic);
 
   will-change: transform, background-position;
 }
@@ -209,10 +229,13 @@ input:-webkit-autofill:focus {
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
+/* Replace native focus outline with a glassmorphic glow */
+.cta:focus,
 .cta:focus-visible {
   outline: none;
   box-shadow:
     0 0 0 3px rgba(34, 211, 238, 0.45),
+    0 0 28px 4px rgba(99, 102, 241, 0.35),
     0 16px 32px var(--accent-glow);
 }
 
@@ -236,5 +259,9 @@ input:-webkit-autofill:focus {
   .input-group {
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+
+  .glass-card:focus-within {
+    transform: translateY(-3px);
   }
 }

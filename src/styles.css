@@ -20,25 +20,33 @@
   --accent-glow: rgba(99, 102, 241, 0.45);
   --accent-glow-soft: rgba(34, 211, 238, 0.25);
 
-  /* Typography */
-  --text-primary: rgba(255, 255, 255, 0.95);
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --text-muted: rgba(255, 255, 255, 0.45);
+  /* Typography — bumped for WCAG AA on glass overlays */
+  --text-primary: rgba(255, 255, 255, 0.96);
+  --text-secondary: rgba(255, 255, 255, 0.78);
+  --text-muted: rgba(255, 255, 255, 0.58);
 
   /* Shadows */
   --shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.25);
   --shadow-deep: 0 20px 60px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.35);
   --shadow-glow: 0 0 0 1px var(--glass-border), 0 20px 60px rgba(7, 9, 26, 0.6);
+  --focus-ring: 0 0 0 3px rgba(99, 102, 241, 0.35),
+                0 0 28px 4px rgba(34, 211, 238, 0.2);
 
   /* Geometry */
   --radius-sm: 10px;
   --radius-md: 16px;
   --radius-lg: 24px;
 
-  /* Motion */
+  /* Motion — single organic curve, used everywhere */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --transition-fast: 180ms var(--ease-out);
-  --transition-smooth: 320ms var(--ease-out);
+  --transition-fast: 220ms var(--ease-out);
+  --transition-smooth: 420ms var(--ease-out);
+  --transition-organic: 600ms var(--ease-out);
+
+  /* Browser native UI tints */
+  color-scheme: dark;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
 }
 
 * {
@@ -65,6 +73,57 @@ body {
   background-attachment: fixed;
 
   overflow-x: hidden;
+}
+
+/* ==================================
+   Custom scrollbar — glass-friendly
+   ================================== */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0.08)
+  );
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  transition: background var(--transition-fast);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(99, 102, 241, 0.6),
+    rgba(34, 211, 238, 0.45)
+  );
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* ==================================
+   Global focus reset — replace native
+   outlines with the glass focus-ring.
+   ================================== */
+:where(input, button, select, textarea, a):focus {
+  outline: none;
+}
+
+:where(button, a):focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
 }
 
 .center {

@@ -1,10 +1,10 @@
 /* ================================
-   Glass card wrapper
+   Glass card wrapper — no h-scroll
    ================================ */
 .results-card {
   max-width: 56rem;
   margin: 2rem auto 4rem;
-  padding: 1.5rem;
+  padding: 1.25rem;
 
   background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur)) saturate(140%);
@@ -13,8 +13,9 @@
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-deep), inset 0 1px 0 rgba(255, 255, 255, 0.06);
 
-  /* Horizontal scroll on narrow viewports without breaking the card */
-  overflow-x: auto;
+  /* Critical: no horizontal overflow.
+     The columns themselves shrink/hide via media queries below. */
+  overflow: hidden;
 
   animation: cardIn 700ms var(--ease-out) both;
   animation-delay: 80ms;
@@ -26,10 +27,11 @@
 }
 
 /* ================================
-   Table base
+   Table base — fluid, no scroll
    ================================ */
 table {
   width: 100%;
+  table-layout: auto;
   border-collapse: separate;
   border-spacing: 0;
   text-align: right;
@@ -37,7 +39,7 @@ table {
 }
 
 thead th {
-  padding: 0.85rem 1rem;
+  padding: 0.85rem 0.75rem;
   font-family: 'Roboto Condensed', sans-serif;
   font-size: 0.7rem;
   font-weight: 700;
@@ -47,15 +49,14 @@ thead th {
 
   border-bottom: 1px solid var(--glass-border);
   background: rgba(255, 255, 255, 0.02);
-  position: sticky;
-  top: 0;
+  white-space: nowrap;
 }
 
 thead th:first-child { text-align: left;  border-top-left-radius: var(--radius-sm); }
-thead th:last-child  {                     border-top-right-radius: var(--radius-sm); }
+thead th:last-child  {                    border-top-right-radius: var(--radius-sm); }
 
 tbody td {
-  padding: 0.85rem 1rem;
+  padding: 0.8rem 0.75rem;
   font-family: 'Roboto Condensed', sans-serif;
   font-size: 0.92rem;
   color: var(--text-primary);
@@ -69,7 +70,7 @@ tbody td.year {
 }
 
 tbody tr {
-  transition: background-color var(--transition-fast), transform var(--transition-fast);
+  transition: background-color var(--transition-fast);
 }
 
 tbody tr:hover {
@@ -80,7 +81,7 @@ tbody tr:last-child td {
   border-bottom: none;
 }
 
-/* Soft accent on the rightmost column to draw the eye to value-end-of-year */
+/* Soft accent on the value-end-of-year column */
 tbody td:nth-child(2) {
   color: transparent;
   background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
@@ -90,8 +91,7 @@ tbody td:nth-child(2) {
 }
 
 /* ================================
-   Staggered fade-in for rows
-   — uses transform + opacity only (GPU-friendly, no layout shift)
+   Staggered fade-in
    ================================ */
 .animate-row {
   opacity: 0;
@@ -108,18 +108,47 @@ tbody td:nth-child(2) {
 }
 
 /* ================================
-   Responsive
+   Responsive — shrink first, then hide low-priority columns
    ================================ */
+@media (max-width: 880px) {
+  thead th,
+  tbody td {
+    padding: 0.7rem 0.5rem;
+    font-size: 0.84rem;
+  }
+  thead th { font-size: 0.65rem; letter-spacing: 0.1em; }
+}
+
+/* Tablet & narrow: hide "Total Interest" (4th column) */
 @media (max-width: 720px) {
+  thead th:nth-child(4),
+  tbody td:nth-child(4) {
+    display: none;
+  }
+
+  thead th,
+  tbody td {
+    padding: 0.65rem 0.45rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Phone: also hide "Interest (Year)" (3rd column) — keep year, value, capital */
+@media (max-width: 480px) {
+  thead th:nth-child(3),
+  tbody td:nth-child(3) {
+    display: none;
+  }
+
   .results-card {
-    margin: 1.25rem 1rem 2.5rem;
-    padding: 0.75rem;
+    margin: 1.25rem 0.75rem 2.5rem;
+    padding: 0.5rem;
     border-radius: var(--radius-md);
   }
 
   thead th,
   tbody td {
-    padding: 0.7rem 0.6rem;
-    font-size: 0.82rem;
+    padding: 0.6rem 0.4rem;
+    font-size: 0.78rem;
   }
 }

@@ -6,24 +6,47 @@ header {
   animation: headerIn 700ms var(--ease-out) both;
 }
 
-header img {
-  width: 5.5rem;
-  height: 5.5rem;
-  object-fit: contain;
-  padding: 0.75rem;
-  border-radius: 50%;
+/* Glass ring around the logo — clips the scaled image to a circle */
+header .logo-frame {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 6rem;
+  height: 6rem;
 
   background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+  border-radius: 50%;
+  overflow: hidden;
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
-  border: 1px solid var(--glass-border);
   box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 
-  transition: transform var(--transition-smooth);
+  transition: transform var(--transition-organic), box-shadow var(--transition-organic);
 }
 
-header img:hover {
-  transform: translateY(-2px) scale(1.03);
+header .logo-frame:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(99, 102, 241, 0.25),
+              inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+/* Logo: cover fills the circle, scale crops the outer edges so only the
+   centerpiece is shown. object-position keeps the focal point centered,
+   so the image is never deformed (aspect ratio preserved). */
+header .logo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.6);
+  transform-origin: center;
+
+  transition: transform var(--transition-organic);
+}
+
+header .logo-frame:hover img {
+  transform: scale(1.7);
 }
 
 header h1 {
